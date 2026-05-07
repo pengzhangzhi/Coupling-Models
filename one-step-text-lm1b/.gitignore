@@ -1,0 +1,34 @@
+# Data and caches
+data/
+.runtime/
+# Checkpoints
+*.pt
+*.ckpt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# IDE / AI tools
+.idea/
+.vscode/
+
+# Experiment artifacts
+checkpoints/
+logs/
+nlogs/
+wandb/
+
+# Misc
+.coverage
+.pytest_cache/
+.ruff_cache/
+tmp/
