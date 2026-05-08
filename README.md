@@ -1,6 +1,6 @@
 # Coupling Models
 
-Repository for experiments around one-step generative transport models, MNIST guidance comparisons, and the text-generation release artifacts.
+Official repository for experiments around *Coupling Models for One-Step Discrete Generation*.
 
 ## What lives here
 
