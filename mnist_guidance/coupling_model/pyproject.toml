@@ -1,0 +1,29 @@
+[project]
+name = "transport-model-mnist"
+version = "0.1.0"
+description = "Conditional one-step MNIST transport model with generator-side CFG sweep tooling."
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.8",
+    "torch",
+    "torch-fidelity",
+    "torchmetrics[image]",
+    "torchvision",
+    "wandb",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }
+torchvision = { index = "pytorch-cu126" }
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true

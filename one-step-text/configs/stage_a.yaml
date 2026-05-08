@@ -1,0 +1,37 @@
+
+model:
+  d: 256
+  embed_dim: 256
+  sigma: 0.05
+  seq_len: 128
+
+flow:
+  type: tarflow
+  num_blocks: 8        # number of MetaBlocks (alternating identity/flip perm)
+  layers_per_block: 4  # transformer depth per block
+  channels: 512        # transformer hidden width
+  head_dim: 64         # attention head dimension
+  expansion: 4         # MLP expansion factor
+
+checkpoints:
+  save_path: checkpoints/stage_a/v3_lm1b/checkpoint.pt
+
+training:
+  batch_size: 32
+  lr: 1.0e-5
+  weight_decay: 1.0e-4
+  warmup_steps: 2000
+  max_steps: 200000
+  lambda_flow_start: 0.1
+  lambda_flow_end: 1.0
+  lambda_flow_anneal_frac: 0.5
+  grad_clip: 1.0
+  mixed_precision: false
+  log_every: 100
+  eval_every: 2000
+
+wandb:
+  run_name: null
+  tags: [stage_a, v3, tarflow, learned-embedding, linear-head]
+  log_every: 100
+  save_artifact: true

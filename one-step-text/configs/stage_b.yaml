@@ -1,0 +1,34 @@
+generator:
+  arch: transformer
+  width: 768
+  depth: 12
+  num_heads: 12
+  ffn_dim: 2048
+
+checkpoints:
+  stage_a_path: checkpoints/stage_a/v3_lm1b/checkpoint.pt
+  save_path: checkpoints/stage_b/v3_lm1b/generator.pt
+
+training:
+  batch_size: 32
+  lr: 2.0e-4
+  weight_decay: 0.01
+  warmup_steps: 2000
+  max_steps: 400000
+  grad_clip: 1.0
+  ema_decay: 0.999
+  label_smoothing: 0.05
+  mixed_precision: false
+  compile: false
+  sample_z_scale: 1.00
+  z_gauss_prob: 0.30
+  sample_every: 2000      # more frequent for debug visibility
+  num_samples: 4
+  lambda_kd: 1.0
+  kd_temperature: 2.0
+  log_every: 50           # finer logging for debug runs
+
+wandb:
+  run_name: null
+  tags: [stage_b, v3, transformer-plus-plus, rmsnorm, swiglu, bidirectional]
+  save_artifact: false

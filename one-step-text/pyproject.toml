@@ -1,0 +1,19 @@
+[project]
+name = "latent-transport-lm"
+version = "0.1.0"
+description = "Single-pass latent transport language model experiments"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0",
+    "numpy>=1.24",
+    "PyYAML>=6.0",
+    "datasets>=2.14",
+    "transformers>=4.30",
+    "wandb>=0.17",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]

@@ -1,0 +1,54 @@
+# Stage B MDM: latent-conditioned masked denoiser with P2 sampling.
+#
+# Architecture:
+#   - token embedding for masked sequence xt
+#   - z projection for Stage A Gaussian latent
+#   - learned absolute position bias
+#   - bidirectional Transformer++ blocks
+#   - final RMSNorm + LM head / x0 token classifier
+
+generator:
+  arch: latent_mdm
+  width: 768
+  depth: 12
+  num_heads: 12
+  ffn_dim: 2048
+
+checkpoints:
+  stage_a_path: checkpoints/stage_a/v3_lm1b/checkpoint.pt
+  save_path: checkpoints/stage_b/v3_lm1b_mdm/generator.pt
+
+training:
+  batch_size: 32
+  lr: 2.0e-4
+  weight_decay: 0.01
+  warmup_steps: 2000
+  max_steps: 500000
+  grad_clip: 1.0
+  ema_decay: 0.999
+  label_smoothing: 0.05
+  mixed_precision: false
+  compile: false
+  sample_z_scale: 1.00
+  z_gauss_prob: 0.0
+  sample_every: 2000
+  num_samples: 4
+  lambda_kd: 1.0
+  kd_temperature: 2.0
+  mdm_steps: 8
+  mdm_tau: 1.0
+  mdm_eta: 1.0
+  mdm_full_mask_prob: 0.5
+  eval_sweep_every: 2000
+  eval_mdm_steps: [2, 4, 8]
+  eval_mdm_tau: 0.4
+  eval_mdm_eta: 1.0
+  eval_num_samples: 1024
+  eval_gpt2_model: gpt2-large
+  eval_batch_size: 64
+  log_every: 50
+
+wandb:
+  run_name: null
+  tags: [stage_b, v3, latent-mdm, p2, rmsnorm, swiglu, bidirectional]
+  save_artifact: false
