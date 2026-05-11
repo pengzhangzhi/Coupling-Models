@@ -1,6 +1,6 @@
 # Coupling Models
 
-Official repository for experiments around *Coupling Models for One-Step Discrete Generation*.
+Official PyTorch Implementation for experiments around [*Coupling Models for One-Step Discrete Generation*](https://arxiv.org/pdf/2605.07193).
 
 ## What lives here
 
