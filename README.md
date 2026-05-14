@@ -11,8 +11,5 @@ Official PyTorch Implementation for experiments around [*Coupling Models for One
 - `one-step-text/`
   - Local-first text generation experiments for the transport model release.
   - Includes data prep, Stage A / Stage B training, and evaluation scripts.
-- `one-step-text-lm1b/`
-  - Original LM1B text-generation implementation for the coupling-model paper.
-  - Includes the paper-oriented training and evaluation scripts.
 - `one-step-DNA/`
   - DNA-related one-step model code.
